@@ -1,0 +1,241 @@
+@import "tailwindcss";
+
+:root {
+  --navy: #101e30;
+  --navy-soft: #1b3047;
+  --ivory: #f8f5ef;
+  --saffron: #e9a23b;
+  --ink: #182230;
+  --muted: #697586;
+  --line: #e7e2d9;
+  --background: var(--ivory);
+  --foreground: var(--ink);
+}
+
+@theme inline {
+  --color-navy: var(--navy);
+  --color-navy-soft: var(--navy-soft);
+  --color-ivory: var(--ivory);
+  --color-saffron: var(--saffron);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-manrope), sans-serif;
+  --font-devanagari: var(--font-noto), var(--font-manrope), sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--font-manrope), sans-serif;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+html[data-lang="hi"] body {
+  font-family: var(--font-noto), var(--font-manrope), sans-serif;
+  line-height: 1.7;
+}
+
+html[data-lang="hi"] h1,
+html[data-lang="hi"] h2,
+html[data-lang="hi"] h3 {
+  line-height: 1.28;
+  letter-spacing: 0;
+}
+
+.wordmark {
+  font-family: var(--font-manrope), sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.container-page {
+  width: min(1120px, calc(100% - 2.5rem));
+  margin-inline: auto;
+}
+
+.display {
+  font-size: clamp(2.05rem, 7.2vw, 5.15rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+}
+
+.section-title {
+  font-size: clamp(2rem, 3.6vw, 3.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+html[data-lang="hi"] .eyebrow {
+  letter-spacing: 0.06em;
+  text-transform: none;
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.saffron-rule {
+  display: block;
+  width: 2.75rem;
+  height: 1px;
+  background: var(--saffron);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 3rem;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn-saffron {
+  background: var(--saffron);
+  color: var(--navy);
+}
+
+.btn-saffron:hover {
+  background: #f0b257;
+}
+
+.btn-line {
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  color: white;
+  background: transparent;
+}
+
+.btn-line:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.btn-navy {
+  background: var(--navy);
+  color: var(--ivory);
+}
+
+.btn-navy:hover {
+  background: var(--navy-soft);
+}
+
+.field {
+  width: 100%;
+  min-height: 3rem;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  padding: 0.85rem 0.9rem;
+  font: inherit;
+  font-size: 1rem;
+  border-radius: 0;
+}
+
+.field:focus {
+  outline: 2px solid var(--saffron);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+.zoom-img {
+  transition: transform 0.7s ease;
+}
+
+.group:hover .zoom-img {
+  transform: scale(1.045);
+}
+
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.js .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.hero-rise {
+  animation: rise 0.9s ease both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-rise,
+  .js .reveal {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .zoom-img,
+  .group:hover .zoom-img {
+    transform: none;
+    transition: none;
+  }
+
+  .btn {
+    transition: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-page {
+    width: min(1120px, calc(100% - 4.5rem));
+  }
+}
+
+header a.btn.hidden {
+  display: none;
+}
+
+@media (min-width: 64rem) {
+  header a.btn.hidden {
+    display: inline-flex;
+  }
+}
